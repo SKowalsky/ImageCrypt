@@ -30,7 +30,7 @@
             <PivotItem  Header="Bild" VerticalAlignment="Stretch" RequestedTheme="Default">
                 <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF474747">
                     <CommandBar Background="White" IsOpen="False" DefaultLabelPosition="Right" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,19,0,19">
-                        <AppBarButton x:Name="dExecute" Label="Entschlüsseln">
+                        <AppBarButton x:Name="dExecute" Label="Entschlüsseln" Click="dExecute_Click">
                             <AppBarButton.Icon>
                                 <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE785;"/>
                             </AppBarButton.Icon>

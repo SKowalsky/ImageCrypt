@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
@@ -14,6 +15,7 @@ using Windows.Storage.AccessCache;
 using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
 using Windows.UI;
+using Windows.UI.Text;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -35,6 +37,7 @@ namespace ImageCrypt
     {
 
         private WriteableBitmap cbmp;
+        private string ctext;
 
         public UIElement ImageControl { get; private set; }
 
@@ -91,9 +94,6 @@ namespace ImageCrypt
 
         public async void ToImage(string text)
         {
-            int padding = text.Length % 3;
-            if(padding == 1) { text += "\0"; } else if(padding == 2) { text += "\0"; }
-
             int[] bounds = getBounds(text.Length - 1);
             int width = bounds[0];
             int height = bounds[1];
@@ -111,9 +111,9 @@ namespace ImageCrypt
                         char r;
                         char g;
                         char b;
-                        if (pos < text.Length) { r = text[pos++]; } else { r = '\0'; }
-                        if (pos < text.Length) { g = text[pos++]; } else { g = '\0'; }
-                        if (pos < text.Length) { b = text[pos++]; } else { b = '\0'; }
+                        if (pos < text.Length-1) { r = text[pos++]; } else { r = '\0'; }
+                        if (pos < text.Length-1) { g = text[pos++]; } else { g = '\0'; }
+                        if (pos < text.Length-1) { b = text[pos++]; } else { b = '\0'; }
                         c = (r << 16) + (g << 8) + b;
                         bmp.SetPixel(x, y, c);
                     }
@@ -124,14 +124,38 @@ namespace ImageCrypt
             mpivot.SelectedIndex = 1;
         }
 
+        public async void ToText(WriteableBitmap bmp)
+        {
+            StringBuilder sb = new StringBuilder("");
+            using (bmp.GetBitmapContext())
+            {
+                for (int x = 0; x < bmp.PixelWidth; x++)
+                {
+                    for (int y = 0; y < bmp.PixelHeight; y++)
+                    {
+                        Color c = bmp.GetPixel(x, y);
+                        char r = (char)c.R;
+                        char g = (char)c.G;
+                        char b = (char)c.B;
+                        sb.Append(r);
+                        sb.Append(g);
+                        sb.Append(b);
+                    }
+                }
+            }
+            eText.Document.SetText(TextSetOptions.None, sb.ToString());
+        }
+
         private int[] getBounds(int length)
         {
+            length += 3 - length % 3;
             length /= 3;
+
             List<int> widthl = new List<int>();
             int height = 0;
             while (widthl.Count() == 0)
             {
-                for (int i = 1; i < length; i++)
+                for (int i = 1; i <= length; i++)
                 {
                     if (length % i == 0 && (Math.Ceiling((double)i / 3) <= length / i && Math.Ceiling((double)(length / i) / 3) <= i))
                     {
@@ -189,6 +213,14 @@ namespace ImageCrypt
                 await dw.StoreAsync();
                 await dw.FlushAsync();
                 dw.DetachStream();
+            }
+        }
+
+        private void dExecute_Click(object sender, RoutedEventArgs e)
+        {
+            if(cbmp != null)
+            {
+                ToText(cbmp);
             }
         }
     }
