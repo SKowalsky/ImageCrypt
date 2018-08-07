@@ -17,7 +17,7 @@
                                 <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE72E;"/>
                             </AppBarButton.Icon>
                         </AppBarButton>
-                        <AppBarButton x:Name="eSave" Icon="Save" Label="Speichern"/>
+                        <AppBarButton x:Name="eSave" Icon="Save" Label="Speichern" Click="eSave_Click"/>
                         <AppBarButton x:Name="eOpen" Icon="OpenFile" Label="Datei laden"/>
                         <CommandBar.SecondaryCommands>
                             <AppBarButton Icon="Setting" Label="Settings"/>
@@ -35,7 +35,7 @@
                                 <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE785;"/>
                             </AppBarButton.Icon>
                         </AppBarButton>
-                        <AppBarButton x:Name="dSave" Icon="Save" Label="Speichern"/>
+                        <AppBarButton x:Name="dSave" Icon="Save" Label="Speichern" Click="dSave_Click"/>
                         <AppBarButton x:Name="dOpen" Icon="OpenFile" Label="Datei laden"/>
                         <CommandBar.SecondaryCommands>
                             <AppBarButton Icon="Setting" Label="Settings"/>

@@ -3,9 +3,16 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Graphics.Display;
+using Windows.Graphics.Imaging;
+using Windows.Storage;
+using Windows.Storage.AccessCache;
+using Windows.Storage.Pickers;
+using Windows.Storage.Streams;
 using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -28,6 +35,8 @@ namespace ImageCrypt
     {
 
         private WriteableBitmap cbmp;
+
+        public UIElement ImageControl { get; private set; }
 
         public MainPage()
         {
@@ -63,11 +72,12 @@ namespace ImageCrypt
         {
             string text = "";
             eText.Document.GetText(Windows.UI.Text.TextGetOptions.None, out text);
-            
-            if(text.Length > 1 && text.Length < 2147483647)
+
+            if (text.Length > 1 && text.Length < 2147483647)
             {
                 ToImage(text);
-            } else if(text.Length < 2147483647)
+            }
+            else if (text.Length < 2147483647)
             {
                 ContentDialog d = new ContentDialog()
                 {
@@ -81,6 +91,9 @@ namespace ImageCrypt
 
         public async void ToImage(string text)
         {
+            int padding = text.Length % 3;
+            if(padding == 1) { text += "\0"; } else if(padding == 2) { text += "\0"; }
+
             int[] bounds = getBounds(text.Length - 1);
             int width = bounds[0];
             int height = bounds[1];
@@ -107,19 +120,20 @@ namespace ImageCrypt
                 }
             }
             dImage.Source = bmp;
+            cbmp = bmp;
             mpivot.SelectedIndex = 1;
         }
 
         private int[] getBounds(int length)
         {
-            int beglength = length;
+            length /= 3;
             List<int> widthl = new List<int>();
             int height = 0;
             while (widthl.Count() == 0)
             {
                 for (int i = 1; i < length; i++)
                 {
-                    if (length % i == 0 && (Math.Ceiling((double)i / 2) <= length / i && Math.Ceiling((double)(length / i) / 2) <= i))
+                    if (length % i == 0 && (Math.Ceiling((double)i / 3) <= length / i && Math.Ceiling((double)(length / i) / 3) <= i))
                     {
                         widthl.Add(i);
                     }
@@ -131,6 +145,51 @@ namespace ImageCrypt
             width = widthl.ElementAt(index);
             height = length / width;
             return new int[] { width, height, length };
+        }
+
+        public static async Task<StorageFile> WriteableBitmapToStorageFile(WriteableBitmap bm)
+        {
+            Guid BitmapEncoderGuid = BitmapEncoder.JpegEncoderId;
+            BitmapEncoderGuid = BitmapEncoder.JpegEncoderId;
+
+            var Picker = new FileSavePicker();
+            Picker.FileTypeChoices.Add("Image", new List<string>() { ".png" });
+            StorageFile file = await Picker.PickSaveFileAsync();
+
+            using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.ReadWrite))
+            {
+                BitmapEncoder encoder = await BitmapEncoder.CreateAsync(BitmapEncoderGuid, stream);
+                Stream pixelStream = bm.PixelBuffer.AsStream();
+                byte[] pixels = new byte[pixelStream.Length];
+                await pixelStream.ReadAsync(pixels, 0, pixels.Length);
+                encoder.SetPixelData(BitmapPixelFormat.Bgra8, BitmapAlphaMode.Ignore, (uint)bm.PixelWidth, (uint)bm.PixelHeight, 96, 96, pixels);
+                await encoder.FlushAsync();
+            }
+            return file;
+        }
+
+        private void dSave_Click(object sender, RoutedEventArgs e)
+        {
+            WriteableBitmapToStorageFile(cbmp);
+        }
+
+        private async void eSave_Click(object sender, RoutedEventArgs e)
+        {
+            string text = "";
+            eText.Document.GetText(Windows.UI.Text.TextGetOptions.None, out text);
+
+            var Picker = new FileSavePicker();
+            Picker.FileTypeChoices.Add("Text", new List<string>() { ".txt" });
+            StorageFile file = await Picker.PickSaveFileAsync();
+            if(file == null) { return; }
+            using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.ReadWrite))
+            {
+                DataWriter dw = new DataWriter(stream);
+                dw.WriteString(text);
+                await dw.StoreAsync();
+                await dw.FlushAsync();
+                dw.DetachStream();
+            }
         }
     }
 }

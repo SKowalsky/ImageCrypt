@@ -180,15 +180,17 @@ namespace ImageCrypt.ImageCrypt_XamlTypeInfo
 
         private void InitTypeTables()
         {
-            _typeNameTable = new string[3];
+            _typeNameTable = new string[4];
             _typeNameTable[0] = "ImageCrypt.MainPage";
             _typeNameTable[1] = "Windows.UI.Xaml.Controls.Page";
             _typeNameTable[2] = "Windows.UI.Xaml.Controls.UserControl";
+            _typeNameTable[3] = "Windows.UI.Xaml.UIElement";
 
-            _typeTable = new global::System.Type[3];
+            _typeTable = new global::System.Type[4];
             _typeTable[0] = typeof(global::ImageCrypt.MainPage);
             _typeTable[1] = typeof(global::Windows.UI.Xaml.Controls.Page);
             _typeTable[2] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
+            _typeTable[3] = typeof(global::Windows.UI.Xaml.UIElement);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -238,6 +240,7 @@ namespace ImageCrypt.ImageCrypt_XamlTypeInfo
             case 0:   //  ImageCrypt.MainPage
                 userType = new global::ImageCrypt.ImageCrypt_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
                 userType.Activator = Activate_0_MainPage;
+                userType.AddMemberName("ImageControl");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
@@ -249,16 +252,35 @@ namespace ImageCrypt.ImageCrypt_XamlTypeInfo
             case 2:   //  Windows.UI.Xaml.Controls.UserControl
                 xamlType = new global::ImageCrypt.ImageCrypt_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
+
+            case 3:   //  Windows.UI.Xaml.UIElement
+                xamlType = new global::ImageCrypt.ImageCrypt_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
             }
             return xamlType;
         }
 
 
+        private object get_0_MainPage_ImageControl(object instance)
+        {
+            var that = (global::ImageCrypt.MainPage)instance;
+            return that.ImageControl;
+        }
 
         private global::Windows.UI.Xaml.Markup.IXamlMember CreateXamlMember(string longMemberName)
         {
             global::ImageCrypt.ImageCrypt_XamlTypeInfo.XamlMember xamlMember = null;
-            // No Local Properties
+            global::ImageCrypt.ImageCrypt_XamlTypeInfo.XamlUserType userType;
+
+            switch (longMemberName)
+            {
+            case "ImageCrypt.MainPage.ImageControl":
+                userType = (global::ImageCrypt.ImageCrypt_XamlTypeInfo.XamlUserType)GetXamlTypeByName("ImageCrypt.MainPage");
+                xamlMember = new global::ImageCrypt.ImageCrypt_XamlTypeInfo.XamlMember(this, "ImageControl", "Windows.UI.Xaml.UIElement");
+                xamlMember.Getter = get_0_MainPage_ImageControl;
+                xamlMember.SetIsReadOnly();
+                break;
+            }
             return xamlMember;
         }
     }

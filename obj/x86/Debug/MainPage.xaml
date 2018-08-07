@@ -17,7 +17,7 @@
                                 <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE72E;"/>
                             </AppBarButton.Icon>
                         </AppBarButton>
-                        <AppBarButton x:ConnectionId='9' x:Name="eSave" Icon="Save" Label="Speichern"/>
+                        <AppBarButton x:ConnectionId='9' x:Name="eSave" Icon="Save" Label="Speichern"                    />
                         <AppBarButton x:ConnectionId='10' x:Name="eOpen" Icon="OpenFile" Label="Datei laden"/>
                         <CommandBar.SecondaryCommands>
                             <AppBarButton Icon="Setting" Label="Settings"/>
@@ -35,13 +35,13 @@
                                 <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE785;"/>
                             </AppBarButton.Icon>
                         </AppBarButton>
-                        <AppBarButton x:ConnectionId='5' x:Name="dSave" Icon="Save" Label="Speichern"/>
+                        <AppBarButton x:ConnectionId='5' x:Name="dSave" Icon="Save" Label="Speichern"                    />
                         <AppBarButton x:ConnectionId='6' x:Name="dOpen" Icon="OpenFile" Label="Datei laden"/>
                         <CommandBar.SecondaryCommands>
                             <AppBarButton Icon="Setting" Label="Settings"/>
                         </CommandBar.SecondaryCommands>
                     </CommandBar>
-                    <Image x:ConnectionId='3' x:Name="dImage" Source="/Assets/StoreLogo.png" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,70" RequestedTheme="Default"/>
+                    <Image x:ConnectionId='3' x:Name="dImage" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,70" RequestedTheme="Default"/>
                 </Grid>
 
             </PivotItem>
