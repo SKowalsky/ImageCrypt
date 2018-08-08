@@ -19,7 +19,7 @@
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
     <LayoutDir>C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Debug\AppX</LayoutDir>
-    <RegisteredManifestChecksum>8BF45B063D9972DC1B2666A224776819439C7F061078133F94883C96DA59E2D2</RegisteredManifestChecksum>
+    <RegisteredManifestChecksum>39140EF4E1532AA5927AF904B09FE2001A0745BDB03733B76C8EC895E57086C2</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>1f871366-def5-447d-858f-7e04318201e2_1.0.0.0_x86__zk14s58nyx7z4</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>1f871366-def5-447d-858f-7e04318201e2_zk14s58nyx7z4!App</RegisteredUserModeAppID>
     <RegisteredPackageID>1f871366-def5-447d-858f-7e04318201e2</RegisteredPackageID>
@@ -31,13 +31,13 @@
     <AppXManifest Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-08-07T21:19:21.272</Modified>
+      <Modified>2018-08-08T21:14:12.631</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Debug\ImageCrypt.exe">
       <PackagePath>entrypoint\ImageCrypt.exe</PackagePath>
-      <Modified>2018-08-07T21:19:20.998</Modified>
+      <Modified>2018-08-08T21:14:12.353</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\skowa\.nuget\packages\microsoft.csharp\4.0.1\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -495,9 +495,17 @@
       <PackagePath>System.Xml.XmlSerializer.dll</PackagePath>
       <Modified>2016-06-11T21:15:04.000</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\skowa\.nuget\packages\win2d.uwp\1.21.0\runtimes\win10-x86\native\Microsoft.Graphics.Canvas.dll">
+      <PackagePath>Microsoft.Graphics.Canvas.dll</PackagePath>
+      <Modified>2017-06-26T01:01:44.000</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\skowa\.nuget\packages\writeablebitmapex\1.5.1\lib\NetCore45\WriteableBitmapEx.WinRT.dll">
       <PackagePath>WriteableBitmapEx.WinRT.dll</PackagePath>
       <Modified>2017-05-05T11:15:54.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\skowa\.nuget\packages\win2d.uwp\1.21.0\lib\uap10.0\Microsoft.Graphics.Canvas.winmd">
+      <PackagePath>Microsoft.Graphics.Canvas.winmd</PackagePath>
+      <Modified>2017-06-26T01:01:44.000</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
@@ -539,15 +547,15 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Debug\ImageCrypt.xr.xml">
       <PackagePath>ImageCrypt.xr.xml</PackagePath>
-      <Modified>2018-08-07T19:34:59.093</Modified>
+      <Modified>2018-08-08T21:14:12.179</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2018-08-07T21:19:20.847</Modified>
+      <Modified>2018-08-08T21:14:12.193</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2018-08-07T21:19:20.848</Modified>
+      <Modified>2018-08-08T21:14:12.193</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.16299.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -556,11 +564,11 @@
     <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-08-07T18:26:17.603</Modified>
+      <Modified>2018-08-08T19:05:35.828</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Debug\Core\ImageCrypt.exe">
       <PackagePath>ImageCrypt.exe</PackagePath>
-      <Modified>2018-08-07T21:19:21.269</Modified>
+      <Modified>2018-08-08T21:14:12.628</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

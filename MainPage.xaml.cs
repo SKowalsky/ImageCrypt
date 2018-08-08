@@ -1,17 +1,15 @@
-﻿using System;
+﻿using Microsoft.Graphics.Canvas.UI.Xaml;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
-using Windows.ApplicationModel.Core;
 using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.Graphics.Display;
 using Windows.Graphics.Imaging;
 using Windows.Storage;
-using Windows.Storage.AccessCache;
 using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
 using Windows.UI;
@@ -19,12 +17,7 @@ using Windows.UI.Text;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
-using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -38,8 +31,6 @@ namespace ImageCrypt
 
         private WriteableBitmap cbmp;
         private string ctext;
-
-        public UIElement ImageControl { get; private set; }
 
         public MainPage()
         {
@@ -73,19 +64,18 @@ namespace ImageCrypt
 
         private async void eExecute_Click(object sender, RoutedEventArgs e)
         {
-            string text = "";
-            eText.Document.GetText(Windows.UI.Text.TextGetOptions.None, out text);
+            string text = eText.Text;
 
-            if (text.Length > 1 && text.Length < 2147483647)
+            if (text.Length > 1 && text.Length < Int32.MaxValue)
             {
                 ToImage(text);
             }
-            else if (text.Length < 2147483647)
+            else if (text.Length > Int32.MaxValue)
             {
                 ContentDialog d = new ContentDialog()
                 {
                     Title = "Text Größe",
-                    Content = "Der Text darf eine maximale Größe von " + text.Length + " Zeichen haben",
+                    Content = "Der Text darf eine maximale Größe von " + Int32.MaxValue + " Zeichen haben",
                     PrimaryButtonText = "Ok"
                 };
                 await d.ShowAsync();
@@ -119,12 +109,32 @@ namespace ImageCrypt
                     }
                 }
             }
-            dImage.Source = bmp;
+
+            IRandomAccessStream stream = await Convert(bmp);
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.SetSource(stream);
+
             cbmp = bmp;
+            dImage.Source = bitmap;
             mpivot.SelectedIndex = 1;
         }
 
-        public async void ToText(WriteableBitmap bmp)
+        private async Task<IRandomAccessStream> Convert(WriteableBitmap writeableBitmap)
+        {
+            var stream = new InMemoryRandomAccessStream();
+
+            BitmapEncoder encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.JpegEncoderId, stream);
+            Stream pixelStream = writeableBitmap.PixelBuffer.AsStream();
+            byte[] pixels = new byte[pixelStream.Length];
+            await pixelStream.ReadAsync(pixels, 0, pixels.Length);
+
+            encoder.SetPixelData(BitmapPixelFormat.Bgra8, BitmapAlphaMode.Ignore, (uint)writeableBitmap.PixelWidth, (uint)writeableBitmap.PixelHeight, 96.0, 96.0, pixels);
+            await encoder.FlushAsync();
+
+            return stream;
+        }
+
+        public void ToText(WriteableBitmap bmp)
         {
             StringBuilder sb = new StringBuilder("");
             using (bmp.GetBitmapContext())
@@ -143,7 +153,8 @@ namespace ImageCrypt
                     }
                 }
             }
-            eText.Document.SetText(TextSetOptions.None, sb.ToString());
+            string s = sb.ToString();
+            eText.Text = s; //Extremly slow --> Find solution
         }
 
         private int[] getBounds(int length)
@@ -199,8 +210,7 @@ namespace ImageCrypt
 
         private async void eSave_Click(object sender, RoutedEventArgs e)
         {
-            string text = "";
-            eText.Document.GetText(Windows.UI.Text.TextGetOptions.None, out text);
+            string text = eText.Text;
 
             var Picker = new FileSavePicker();
             Picker.FileTypeChoices.Add("Text", new List<string>() { ".txt" });
