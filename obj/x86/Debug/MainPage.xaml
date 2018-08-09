@@ -7,43 +7,44 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid x:Name="grid">
-        <Pivot x:Name="mpivot" Title="IMAGECRYPT">
+    <Grid x:ConnectionId='1' x:Name="grid">
+        <Pivot x:ConnectionId='2' x:Name="mpivot" Title="IMAGECRYPT">
             <PivotItem Header="Text" VerticalAlignment="Stretch">
                 <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <CommandBar Background="Transparent" IsOpen="False" DefaultLabelPosition="Right" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,19,0,19">
-                        <AppBarButton x:Name="eExecute" Label="Verschlüsseln" Click="eExecute_Click">
+                        <AppBarButton x:ConnectionId='8' x:Name="eExecute" Label="Verschlüsseln"                       >
                             <AppBarButton.Icon>
                                 <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE72E;"/>
                             </AppBarButton.Icon>
                         </AppBarButton>
-                        <AppBarButton x:Name="eSave" Icon="Save" Label="Speichern" Click="eSave_Click"/>
-                        <AppBarButton x:Name="eOpen" Icon="OpenFile" Label="Datei laden" Click="eOpen_Click"/>
+                        <AppBarButton x:ConnectionId='9' x:Name="eSave" Icon="Save" Label="Speichern"                    />
+                        <AppBarButton x:ConnectionId='10' x:Name="eOpen" Icon="OpenFile" Label="Datei laden"                    />
                         <CommandBar.SecondaryCommands>
                             <AppBarButton Icon="Setting" Label="Settings"/>
                         </CommandBar.SecondaryCommands>
                     </CommandBar>
-                    <TextBox x:Name="eText" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" Margin="0,0,0,70"/>
+                    <TextBox x:ConnectionId='7' x:Name="eText" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" Margin="0,0,0,70"/>
                 </Grid>
 
             </PivotItem>
             <PivotItem  Header="Bild" VerticalAlignment="Stretch" RequestedTheme="Default">
                 <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <CommandBar Background="White" IsOpen="False" DefaultLabelPosition="Right" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,19,0,19">
-                        <AppBarButton x:Name="dExecute" Label="Entschlüsseln" Click="dExecute_Click">
+                        <AppBarButton x:ConnectionId='4' x:Name="dExecute" Label="Entschlüsseln"                       >
                             <AppBarButton.Icon>
                                 <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE785;"/>
                             </AppBarButton.Icon>
                         </AppBarButton>
-                        <AppBarButton x:Name="dSave" Icon="Save" Label="Speichern" Click="dSave_Click"/>
-                        <AppBarButton x:Name="dOpen" Icon="OpenFile" Label="Datei laden"/>
+                        <AppBarButton x:ConnectionId='5' x:Name="dSave" Icon="Save" Label="Speichern"                    />
+                        <AppBarButton x:ConnectionId='6' x:Name="dOpen" Icon="OpenFile" Label="Datei laden"/>
                         <CommandBar.SecondaryCommands>
                             <AppBarButton Icon="Setting" Label="Settings"/>
                         </CommandBar.SecondaryCommands>
                     </CommandBar>
-                    <Image Name="dImage" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,70" RequestedTheme="Default"/>
+                    <Image x:ConnectionId='3' Name="dImage" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,70" RequestedTheme="Default"/>
                 </Grid>
             </PivotItem>
         </Pivot>
     </Grid>
 </Page>
+

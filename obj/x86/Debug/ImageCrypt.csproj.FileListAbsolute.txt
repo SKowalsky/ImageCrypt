@@ -214,5 +214,3 @@ C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\obj\x86\Debug\ProjectArchitect
 C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Debug\WriteableBitmapEx.WinRT.dll
 C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Debug\WriteableBitmapEx.WinRT.pdb
 C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\obj\x86\Debug\ImageCrypt.csprojAssemblyReference.cache
-C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Debug\Microsoft.Graphics.Canvas.dll
-C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Debug\Microsoft.Graphics.Canvas.winmd

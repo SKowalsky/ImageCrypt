@@ -1,5 +1,4 @@
-﻿using Microsoft.Graphics.Canvas.UI.Xaml;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -28,7 +27,7 @@ namespace ImageCrypt
     /// </summary>
     public sealed partial class MainPage : Page
     {
-
+        public string MyValue { get; set; }
         private WriteableBitmap cbmp;
         private string ctext;
 
@@ -97,15 +96,14 @@ namespace ImageCrypt
                 {
                     for (int y = 0; y < height; y++)
                     {
-                        int c;
                         char r;
                         char g;
                         char b;
-                        if (pos < text.Length-1) { r = text[pos++]; } else { r = '\0'; }
-                        if (pos < text.Length-1) { g = text[pos++]; } else { g = '\0'; }
-                        if (pos < text.Length-1) { b = text[pos++]; } else { b = '\0'; }
-                        c = (r << 16) + (g << 8) + b;
-                        bmp.SetPixel(x, y, c);
+                        if (pos < text.Length) { r = text[pos++]; } else { r = '\0'; }
+                        if (pos < text.Length) { g = text[pos++]; } else { g = '\0'; }
+                        if (pos < text.Length) { b = text[pos++]; } else { b = '\0'; }
+                        bmp.SetPixel(x, y, (byte)255, (byte)r, (byte)g, (byte)b);
+                        Color c = bmp.GetPixel(x, y);
                     }
                 }
             }
@@ -153,8 +151,8 @@ namespace ImageCrypt
                     }
                 }
             }
-            string s = sb.ToString();
-            eText.Text = s; //Extremly slow --> Find solution
+            eText.Text = sb.ToString();
+            mpivot.SelectedIndex = 0;
         }
 
         private int[] getBounds(int length)
@@ -229,6 +227,14 @@ namespace ImageCrypt
         private void dExecute_Click(object sender, RoutedEventArgs e)
         {
             if(cbmp != null)
+            {
+                ToText(cbmp);
+            }
+        }
+
+        private void eOpen_Click(object sender, RoutedEventArgs e)
+        {
+            if (cbmp != null)
             {
                 ToText(cbmp);
             }
