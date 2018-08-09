@@ -36,7 +36,7 @@
                             </AppBarButton.Icon>
                         </AppBarButton>
                         <AppBarButton x:Name="dSave" Icon="Save" Label="Speichern" Click="dSave_Click"/>
-                        <AppBarButton x:Name="dOpen" Icon="OpenFile" Label="Datei laden"/>
+                        <AppBarButton x:Name="dOpen" Icon="OpenFile" Label="Datei laden" Click="dOpen_Click"/>
                         <CommandBar.SecondaryCommands>
                             <AppBarButton Icon="Setting" Label="Settings"/>
                         </CommandBar.SecondaryCommands>

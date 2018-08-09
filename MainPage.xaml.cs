@@ -80,7 +80,7 @@ namespace ImageCrypt
                 await d.ShowAsync();
             }
         }
-
+        //TODO: Add actual encryption :)
         public async void ToImage(string text)
         {
             int[] bounds = getBounds(text.Length - 1);
@@ -180,7 +180,7 @@ namespace ImageCrypt
             return new int[] { width, height, length };
         }
 
-        public static async Task<StorageFile> WriteableBitmapToStorageFile(WriteableBitmap bm)
+        public static async Task WriteableBitmapToStorageFile(WriteableBitmap bm)
         {
             Guid BitmapEncoderGuid = BitmapEncoder.JpegEncoderId;
             BitmapEncoderGuid = BitmapEncoder.JpegEncoderId;
@@ -198,12 +198,18 @@ namespace ImageCrypt
                 encoder.SetPixelData(BitmapPixelFormat.Bgra8, BitmapAlphaMode.Ignore, (uint)bm.PixelWidth, (uint)bm.PixelHeight, 96, 96, pixels);
                 await encoder.FlushAsync();
             }
-            return file;
         }
 
-        private void dSave_Click(object sender, RoutedEventArgs e)
+        public static async Task<WriteableBitmap> StorageFileToWritableBitmap()
         {
-            WriteableBitmapToStorageFile(cbmp);
+            //TODO: Read image from file and write to writable bitmap
+            WriteableBitmap bmp = new WriteableBitmap(1, 1);
+            return bmp;
+        }
+
+        private async void dSave_Click(object sender, RoutedEventArgs e)
+        {
+            await WriteableBitmapToStorageFile(cbmp);
         }
 
         private async void eSave_Click(object sender, RoutedEventArgs e)
@@ -232,12 +238,23 @@ namespace ImageCrypt
             }
         }
 
-        private void eOpen_Click(object sender, RoutedEventArgs e)
+        private async void eOpen_Click(object sender, RoutedEventArgs e)
         {
-            if (cbmp != null)
+            var Picker = new FileOpenPicker();
+            Picker.FileTypeFilter.Add(".txt");
+            StorageFile file = await Picker.PickSingleFileAsync();
+            if (file == null) { return; }
+            using (IRandomAccessStream irastream = await file.OpenAsync(FileAccessMode.ReadWrite))
             {
-                ToText(cbmp);
+                StreamReader reader = new StreamReader(irastream.AsStreamForRead());
+                string s = await reader.ReadToEndAsync();
+                eText.Text = s;
             }
+        }
+
+        private void dOpen_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
