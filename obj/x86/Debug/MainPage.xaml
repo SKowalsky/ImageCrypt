@@ -36,7 +36,7 @@
                             </AppBarButton.Icon>
                         </AppBarButton>
                         <AppBarButton x:ConnectionId='5' x:Name="dSave" Icon="Save" Label="Speichern"                    />
-                        <AppBarButton x:ConnectionId='6' x:Name="dOpen" Icon="OpenFile" Label="Datei laden"/>
+                        <AppBarButton x:ConnectionId='6' x:Name="dOpen" Icon="OpenFile" Label="Datei laden"                    />
                         <CommandBar.SecondaryCommands>
                             <AppBarButton Icon="Setting" Label="Settings"/>
                         </CommandBar.SecondaryCommands>

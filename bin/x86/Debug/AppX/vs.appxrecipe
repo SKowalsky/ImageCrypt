@@ -31,13 +31,13 @@
     <AppXManifest Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-08-09T22:07:43.863</Modified>
+      <Modified>2018-08-10T20:57:23.271</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Debug\ImageCrypt.exe">
       <PackagePath>entrypoint\ImageCrypt.exe</PackagePath>
-      <Modified>2018-08-09T22:07:43.587</Modified>
+      <Modified>2018-08-10T20:57:22.996</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\skowa\.nuget\packages\microsoft.csharp\4.0.1\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -543,11 +543,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2018-08-09T22:07:43.425</Modified>
+      <Modified>2018-08-10T20:57:22.833</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2018-08-09T22:07:43.426</Modified>
+      <Modified>2018-08-10T20:57:22.833</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.16299.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -560,7 +560,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Debug\Core\ImageCrypt.exe">
       <PackagePath>ImageCrypt.exe</PackagePath>
-      <Modified>2018-08-09T22:07:43.860</Modified>
+      <Modified>2018-08-10T20:57:23.268</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

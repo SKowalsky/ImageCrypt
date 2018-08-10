@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Graphics.Imaging;
 using Windows.Storage;
+using Windows.Storage.FileProperties;
 using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
 using Windows.UI;
@@ -65,7 +66,7 @@ namespace ImageCrypt
         {
             string text = eText.Text;
 
-            if (text.Length > 1 && text.Length < Int32.MaxValue)
+            if (text.Length > 0 && text.Length < Int32.MaxValue)
             {
                 ToImage(text);
             }
@@ -79,11 +80,21 @@ namespace ImageCrypt
                 };
                 await d.ShowAsync();
             }
+            else if(text.Length == 0)
+            {
+                ContentDialog d = new ContentDialog()
+                {
+                    Title = "Kein Text eingegeben",
+                    Content = "Trage Text in das Textfeld ein, um diese Aktion auszuführen",
+                    PrimaryButtonText = "Ok"
+                };
+                await d.ShowAsync();
+            }
         }
         //TODO: Add actual encryption :)
         public async void ToImage(string text)
         {
-            int[] bounds = getBounds(text.Length - 1);
+            int[] bounds = getBounds(text.Length);
             int width = bounds[0];
             int height = bounds[1];
             int length = bounds[2];
@@ -182,8 +193,8 @@ namespace ImageCrypt
 
         public static async Task WriteableBitmapToStorageFile(WriteableBitmap bm)
         {
-            Guid BitmapEncoderGuid = BitmapEncoder.JpegEncoderId;
-            BitmapEncoderGuid = BitmapEncoder.JpegEncoderId;
+            Guid BitmapEncoderGuid = BitmapEncoder.PngEncoderId;
+            BitmapEncoderGuid = BitmapEncoder.PngEncoderId;
 
             var Picker = new FileSavePicker();
             Picker.FileTypeChoices.Add("Image", new List<string>() { ".png" });
@@ -195,46 +206,85 @@ namespace ImageCrypt
                 Stream pixelStream = bm.PixelBuffer.AsStream();
                 byte[] pixels = new byte[pixelStream.Length];
                 await pixelStream.ReadAsync(pixels, 0, pixels.Length);
-                encoder.SetPixelData(BitmapPixelFormat.Bgra8, BitmapAlphaMode.Ignore, (uint)bm.PixelWidth, (uint)bm.PixelHeight, 96, 96, pixels);
+                encoder.SetPixelData(BitmapPixelFormat.Bgra8, BitmapAlphaMode.Straight, (uint)bm.PixelWidth, (uint)bm.PixelHeight, 96, 96, pixels);
                 await encoder.FlushAsync();
             }
         }
 
         public static async Task<WriteableBitmap> StorageFileToWritableBitmap()
         {
-            //TODO: Read image from file and write to writable bitmap
-            WriteableBitmap bmp = new WriteableBitmap(1, 1);
+            var Picker = new FileOpenPicker();
+            Picker.FileTypeFilter.Add(".png");
+            StorageFile file = await Picker.PickSingleFileAsync();
+            if (file == null) { return null; }
+
+            ImageProperties properties = await file.Properties.GetImagePropertiesAsync();
+            WriteableBitmap bmp = new WriteableBitmap((int)properties.Width, (int)properties.Height);
+            bmp.SetSource(await file.OpenAsync(FileAccessMode.Read));
             return bmp;
         }
 
         private async void dSave_Click(object sender, RoutedEventArgs e)
         {
-            await WriteableBitmapToStorageFile(cbmp);
+            if(cbmp != null)
+            {
+                await WriteableBitmapToStorageFile(cbmp);
+            } else
+            {
+                ContentDialog d = new ContentDialog()
+                {
+                    Title = "Kein Bild geladen",
+                    Content = "Lade ein Bild mit 'Datei laden' um diese Aktion auszuführen",
+                    PrimaryButtonText = "Ok"
+                };
+                await d.ShowAsync();
+            }
         }
 
         private async void eSave_Click(object sender, RoutedEventArgs e)
         {
             string text = eText.Text;
 
-            var Picker = new FileSavePicker();
-            Picker.FileTypeChoices.Add("Text", new List<string>() { ".txt" });
-            StorageFile file = await Picker.PickSaveFileAsync();
-            if(file == null) { return; }
-            using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.ReadWrite))
+            if(text.Length == 0)
             {
-                DataWriter dw = new DataWriter(stream);
-                dw.WriteString(text);
-                await dw.StoreAsync();
-                await dw.FlushAsync();
-                dw.DetachStream();
+                ContentDialog d = new ContentDialog()
+                {
+                    Title = "Kein Text eingegeben",
+                    Content = "Trage Text in das Textfeld ein, um diese Aktion auszuführen",
+                    PrimaryButtonText = "Ok"
+                };
+                await d.ShowAsync();
+            } else
+            {
+                var Picker = new FileSavePicker();
+                Picker.FileTypeChoices.Add("Text", new List<string>() { ".txt" });
+                StorageFile file = await Picker.PickSaveFileAsync();
+                if (file == null) { return; }
+                using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.ReadWrite))
+                {
+                    DataWriter dw = new DataWriter(stream);
+                    dw.WriteString(text);
+                    await dw.StoreAsync();
+                    await dw.FlushAsync();
+                    dw.DetachStream();
+                }
             }
         }
 
-        private void dExecute_Click(object sender, RoutedEventArgs e)
+        private async void dExecute_Click(object sender, RoutedEventArgs e)
         {
             if(cbmp != null)
             {
                 ToText(cbmp);
+            } else
+            {
+                ContentDialog d = new ContentDialog()
+                {
+                    Title = "Kein Bild geladen",
+                    Content = "Lade ein Bild mit 'Datei laden' um diese Aktion auszuführen",
+                    PrimaryButtonText = "Ok"
+                };
+                await d.ShowAsync();
             }
         }
 
@@ -252,9 +302,13 @@ namespace ImageCrypt
             }
         }
 
-        private void dOpen_Click(object sender, RoutedEventArgs e)
+        private async void dOpen_Click(object sender, RoutedEventArgs e)
         {
-
+            cbmp = await StorageFileToWritableBitmap();
+            IRandomAccessStream stream = await Convert(cbmp);
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.SetSource(stream);
+            dImage.Source = bitmap;
         }
     }
 }
