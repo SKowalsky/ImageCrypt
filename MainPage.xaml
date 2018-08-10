@@ -8,37 +8,37 @@
     mc:Ignorable="d">
 
     <Grid x:Name="grid">
-        <Pivot x:Name="mpivot" Title="IMAGECRYPT">
-            <PivotItem Header="Text" VerticalAlignment="Stretch">
+        <Pivot x:Name="mpivot">
+            <PivotItem Header="{Binding Path=PiText}" VerticalAlignment="Stretch">
                 <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <CommandBar Background="Transparent" IsOpen="False" DefaultLabelPosition="Right" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,19,0,19">
-                        <AppBarButton x:Name="eExecute" Label="Verschlüsseln" Click="eExecute_Click">
+                        <AppBarButton x:Name="eExecute" Label="{Binding Path=BtnEncrypt}" Click="eExecute_Click">
                             <AppBarButton.Icon>
                                 <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE72E;"/>
                             </AppBarButton.Icon>
                         </AppBarButton>
-                        <AppBarButton x:Name="eSave" Icon="Save" Label="Speichern" Click="eSave_Click"/>
-                        <AppBarButton x:Name="eOpen" Icon="OpenFile" Label="Datei laden" Click="eOpen_Click"/>
+                        <AppBarButton x:Name="eSave" Icon="Save" Label="{Binding Path=BtnSave}" Click="eSave_Click"/>
+                        <AppBarButton x:Name="eOpen" Icon="OpenFile" Label="{Binding Path=BtnLoad}" Click="eOpen_Click"/>
                         <CommandBar.SecondaryCommands>
-                            <AppBarButton Icon="Setting" Label="Settings"/>
+                            <AppBarButton Icon="Setting" Label="{Binding Path=BtnSettings}"/>
                         </CommandBar.SecondaryCommands>
                     </CommandBar>
                     <TextBox x:Name="eText" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" Margin="0,0,0,70"/>
                 </Grid>
 
             </PivotItem>
-            <PivotItem  Header="Bild" VerticalAlignment="Stretch" RequestedTheme="Default">
+            <PivotItem  Header="{Binding Path=PiImage}" VerticalAlignment="Stretch" RequestedTheme="Default">
                 <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <CommandBar Background="White" IsOpen="False" DefaultLabelPosition="Right" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,19,0,19">
-                        <AppBarButton x:Name="dExecute" Label="Entschlüsseln" Click="dExecute_Click">
+                        <AppBarButton x:Name="dExecute" Label="{Binding Path=BtnDecrypt}" Click="dExecute_Click">
                             <AppBarButton.Icon>
                                 <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE785;"/>
                             </AppBarButton.Icon>
                         </AppBarButton>
-                        <AppBarButton x:Name="dSave" Icon="Save" Label="Speichern" Click="dSave_Click"/>
-                        <AppBarButton x:Name="dOpen" Icon="OpenFile" Label="Datei laden" Click="dOpen_Click"/>
+                        <AppBarButton x:Name="dSave" Icon="Save" Label="{Binding Path=BtnSave}" Click="dSave_Click"/>
+                        <AppBarButton x:Name="dOpen" Icon="OpenFile" Label="{Binding Path=BtnLoad}" Click="dOpen_Click"/>
                         <CommandBar.SecondaryCommands>
-                            <AppBarButton Icon="Setting" Label="Settings"/>
+                            <AppBarButton Icon="Setting" Label="{Binding Path=BtnSettings}"/>
                         </CommandBar.SecondaryCommands>
                     </CommandBar>
                     <Image Name="dImage" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,70" RequestedTheme="Default"/>

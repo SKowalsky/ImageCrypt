@@ -1,5 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Roots >
+  <Roots.PropertyPathNames>
+    <RootPropertyPathName Name="PiImage" />
+    <RootPropertyPathName Name="BtnLoad" />
+    <RootPropertyPathName Name="BtnSave" />
+    <RootPropertyPathName Name="BtnDecrypt" />
+    <RootPropertyPathName Name="BtnSettings" />
+    <RootPropertyPathName Name="PiText" />
+    <RootPropertyPathName Name="BtnEncrypt" />
+  </Roots.PropertyPathNames>
   <Roots.RootTypes>
     <RootType FullName="Windows.UI.Xaml.Application">
       <RootProperty Name="RequestedTheme" />
@@ -13,7 +22,6 @@
       <RootProperty Name="VerticalAlignment" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Pivot">
-      <RootProperty Name="Title" />
       <RootProperty Name="Items" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.PivotItem">
@@ -21,6 +29,9 @@
       <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="Content" />
       <RootProperty Name="RequestedTheme" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Data.Binding">
+      <RootProperty Name="Path" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.CommandBar">
       <RootProperty Name="Background" />

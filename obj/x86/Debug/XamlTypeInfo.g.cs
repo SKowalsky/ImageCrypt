@@ -180,17 +180,15 @@ namespace ImageCrypt.ImageCrypt_XamlTypeInfo
 
         private void InitTypeTables()
         {
-            _typeNameTable = new string[4];
+            _typeNameTable = new string[3];
             _typeNameTable[0] = "ImageCrypt.MainPage";
             _typeNameTable[1] = "Windows.UI.Xaml.Controls.Page";
             _typeNameTable[2] = "Windows.UI.Xaml.Controls.UserControl";
-            _typeNameTable[3] = "String";
 
-            _typeTable = new global::System.Type[4];
+            _typeTable = new global::System.Type[3];
             _typeTable[0] = typeof(global::ImageCrypt.MainPage);
             _typeTable[1] = typeof(global::Windows.UI.Xaml.Controls.Page);
             _typeTable[2] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
-            _typeTable[3] = typeof(global::System.String);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -240,7 +238,6 @@ namespace ImageCrypt.ImageCrypt_XamlTypeInfo
             case 0:   //  ImageCrypt.MainPage
                 userType = new global::ImageCrypt.ImageCrypt_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
                 userType.Activator = Activate_0_MainPage;
-                userType.AddMemberName("MyValue");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
@@ -252,40 +249,16 @@ namespace ImageCrypt.ImageCrypt_XamlTypeInfo
             case 2:   //  Windows.UI.Xaml.Controls.UserControl
                 xamlType = new global::ImageCrypt.ImageCrypt_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
-
-            case 3:   //  String
-                xamlType = new global::ImageCrypt.ImageCrypt_XamlTypeInfo.XamlSystemBaseType(typeName, type);
-                break;
             }
             return xamlType;
         }
 
 
-        private object get_0_MainPage_MyValue(object instance)
-        {
-            var that = (global::ImageCrypt.MainPage)instance;
-            return that.MyValue;
-        }
-        private void set_0_MainPage_MyValue(object instance, object Value)
-        {
-            var that = (global::ImageCrypt.MainPage)instance;
-            that.MyValue = (global::System.String)Value;
-        }
 
         private global::Windows.UI.Xaml.Markup.IXamlMember CreateXamlMember(string longMemberName)
         {
             global::ImageCrypt.ImageCrypt_XamlTypeInfo.XamlMember xamlMember = null;
-            global::ImageCrypt.ImageCrypt_XamlTypeInfo.XamlUserType userType;
-
-            switch (longMemberName)
-            {
-            case "ImageCrypt.MainPage.MyValue":
-                userType = (global::ImageCrypt.ImageCrypt_XamlTypeInfo.XamlUserType)GetXamlTypeByName("ImageCrypt.MainPage");
-                xamlMember = new global::ImageCrypt.ImageCrypt_XamlTypeInfo.XamlMember(this, "MyValue", "String");
-                xamlMember.Getter = get_0_MainPage_MyValue;
-                xamlMember.Setter = set_0_MainPage_MyValue;
-                break;
-            }
+            // No Local Properties
             return xamlMember;
         }
     }

@@ -28,34 +28,32 @@ namespace ImageCrypt
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        public string MyValue { get; set; }
         private WriteableBitmap cbmp;
-        private string ctext;
 
         public MainPage()
         {
-
             this.InitializeComponent();
             ApplicationView.PreferredLaunchViewSize = new Size(700, 500);
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
             ShutdownDialog();
+
+            this.DataContext = new LanguageManager();
+            SetLanguage();
+        }
+
+        private void SetLanguage()
+        {
+            LanguageManager.Language = Lang.English;
+            LanguageManager.SetText();
         }
 
         private void ShutdownDialog()
         {
-            ContentDialog exitdialog = new ContentDialog()
-            {
-                Title = "Beenden",
-                Content = "Wollen Sie die App wirklich beenden?",
-                PrimaryButtonText = "Ja",
-                SecondaryButtonText = "Nein",
-            };
             Windows.UI.Core.Preview.SystemNavigationManagerPreview.GetForCurrentView().CloseRequested +=
             async (sender, args) =>
             {
                 args.Handled = true;
-                var result = await exitdialog.ShowAsync();
-                if (result != ContentDialogResult.Secondary)
+                if (await LanguageManager.GetExitDialog().ShowAsync() != ContentDialogResult.Secondary)
                 {
                     Application.Current.Exit();
                 }
@@ -65,33 +63,92 @@ namespace ImageCrypt
         private async void eExecute_Click(object sender, RoutedEventArgs e)
         {
             string text = eText.Text;
-
             if (text.Length > 0 && text.Length < Int32.MaxValue)
             {
+                //TODO: Prompt input dialog -> receive password -> encrypt text
                 ToImage(text);
             }
             else if (text.Length > Int32.MaxValue)
             {
-                ContentDialog d = new ContentDialog()
-                {
-                    Title = "Text Größe",
-                    Content = "Der Text darf eine maximale Größe von " + Int32.MaxValue + " Zeichen haben",
-                    PrimaryButtonText = "Ok"
-                };
-                await d.ShowAsync();
+                await LanguageManager.GetMaxTextSizeDialog().ShowAsync();
             }
             else if(text.Length == 0)
             {
-                ContentDialog d = new ContentDialog()
-                {
-                    Title = "Kein Text eingegeben",
-                    Content = "Trage Text in das Textfeld ein, um diese Aktion auszuführen",
-                    PrimaryButtonText = "Ok"
-                };
-                await d.ShowAsync();
+                await LanguageManager.GetNoTextDialog().ShowAsync();
             }
         }
-        //TODO: Add actual encryption :)
+
+        private async void dExecute_Click(object sender, RoutedEventArgs e)
+        {
+            if (cbmp != null)
+            {
+                ToText(cbmp);
+            }
+            else
+            {
+                await LanguageManager.GetNoImageDialog().ShowAsync();
+            }
+        }
+
+        private async void eSave_Click(object sender, RoutedEventArgs e)
+        {
+            string text = eText.Text;
+            if (text.Length > 0)
+            {
+                var Picker = new FileSavePicker();
+                Picker.FileTypeChoices.Add("Text", new List<string>() { ".txt" });
+                StorageFile file = await Picker.PickSaveFileAsync();
+                if (file != null) {
+                    using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.ReadWrite))
+                    {
+                        DataWriter dw = new DataWriter(stream);
+                        dw.WriteString(text);
+                        await dw.StoreAsync();
+                        await dw.FlushAsync();
+                        dw.DetachStream();
+                    }
+                }
+            }
+            else
+            {
+                await LanguageManager.GetNoTextDialog().ShowAsync();
+            }
+        }
+
+        private async void dSave_Click(object sender, RoutedEventArgs e)
+        {
+            if (cbmp != null)
+            {
+                await WriteableBitmapToStorageFile(cbmp);
+            }
+            else
+            {
+                await LanguageManager.GetNoImageDialog().ShowAsync();
+            }
+        }
+
+        private async void eOpen_Click(object sender, RoutedEventArgs e)
+        {
+            var Picker = new FileOpenPicker();
+            Picker.FileTypeFilter.Add(".txt");
+            StorageFile file = await Picker.PickSingleFileAsync();
+            if (file != null) {
+                using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.ReadWrite))
+                {
+                    StreamReader reader = new StreamReader(stream.AsStreamForRead());
+                    eText.Text = await reader.ReadToEndAsync();
+                }
+            }
+        }
+
+        private async void dOpen_Click(object sender, RoutedEventArgs e)
+        {
+            cbmp = await StorageFileToWritableBitmap();
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.SetSource(await Convert(cbmp));
+            dImage.Source = bitmap;
+        }
+
         public async void ToImage(string text)
         {
             int[] bounds = getBounds(text.Length);
@@ -114,32 +171,49 @@ namespace ImageCrypt
                         if (pos < text.Length) { g = text[pos++]; } else { g = '\0'; }
                         if (pos < text.Length) { b = text[pos++]; } else { b = '\0'; }
                         bmp.SetPixel(x, y, (byte)255, (byte)r, (byte)g, (byte)b);
-                        Color c = bmp.GetPixel(x, y);
                     }
                 }
             }
-
-            IRandomAccessStream stream = await Convert(bmp);
+            
             BitmapImage bitmap = new BitmapImage();
-            bitmap.SetSource(stream);
+            bitmap.SetSource(await Convert(bmp));
 
             cbmp = bmp;
             dImage.Source = bitmap;
             mpivot.SelectedIndex = 1;
         }
 
+        private int[] getBounds(int length)
+        {
+            length = (length + 3 - length % 3) / 3;
+
+            List<int> widthlist = new List<int>();
+            do
+            {
+                for (int i = 1; i <= length; i++)
+                {
+                    if (length % i == 0 && Math.Ceiling((double)i / 3) <= length / i && Math.Ceiling((double)(length / i) / 3) <= i)
+                    {
+                        widthlist.Add(i);
+                    }
+                }
+                if (widthlist.Count() == 0) { length += 1; }
+            } while (widthlist.Count() == 0);
+
+            int width = widthlist.ElementAt(widthlist.Count() / 2);
+            int height = length / width;
+            return new int[] { width, height, length };
+        }
+
         private async Task<IRandomAccessStream> Convert(WriteableBitmap writeableBitmap)
         {
             var stream = new InMemoryRandomAccessStream();
-
-            BitmapEncoder encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.JpegEncoderId, stream);
+            BitmapEncoder encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, stream);
             Stream pixelStream = writeableBitmap.PixelBuffer.AsStream();
             byte[] pixels = new byte[pixelStream.Length];
             await pixelStream.ReadAsync(pixels, 0, pixels.Length);
-
-            encoder.SetPixelData(BitmapPixelFormat.Bgra8, BitmapAlphaMode.Ignore, (uint)writeableBitmap.PixelWidth, (uint)writeableBitmap.PixelHeight, 96.0, 96.0, pixels);
+            encoder.SetPixelData(BitmapPixelFormat.Bgra8, BitmapAlphaMode.Straight, (uint)writeableBitmap.PixelWidth, (uint)writeableBitmap.PixelHeight, 96.0, 96.0, pixels);
             await encoder.FlushAsync();
-
             return stream;
         }
 
@@ -153,61 +227,34 @@ namespace ImageCrypt
                     for (int y = 0; y < bmp.PixelHeight; y++)
                     {
                         Color c = bmp.GetPixel(x, y);
-                        char r = (char)c.R;
-                        char g = (char)c.G;
-                        char b = (char)c.B;
-                        sb.Append(r);
-                        sb.Append(g);
-                        sb.Append(b);
+                        sb.Append((char)c.R);
+                        sb.Append((char)c.G);
+                        sb.Append((char)c.B);
                     }
                 }
             }
-            eText.Text = sb.ToString();
+            string str = sb.ToString();
+            //TODO: Prompt input dialog -> receive password -> decrypt image
+            eText.Text = str;
             mpivot.SelectedIndex = 0;
-        }
-
-        private int[] getBounds(int length)
-        {
-            length += 3 - length % 3;
-            length /= 3;
-
-            List<int> widthl = new List<int>();
-            int height = 0;
-            while (widthl.Count() == 0)
-            {
-                for (int i = 1; i <= length; i++)
-                {
-                    if (length % i == 0 && (Math.Ceiling((double)i / 3) <= length / i && Math.Ceiling((double)(length / i) / 3) <= i))
-                    {
-                        widthl.Add(i);
-                    }
-                }
-                if (widthl.Count() == 0) { length += 1; }
-            }
-            int width = 0;
-            int index = (widthl.Count() / 2);
-            width = widthl.ElementAt(index);
-            height = length / width;
-            return new int[] { width, height, length };
         }
 
         public static async Task WriteableBitmapToStorageFile(WriteableBitmap bm)
         {
-            Guid BitmapEncoderGuid = BitmapEncoder.PngEncoderId;
-            BitmapEncoderGuid = BitmapEncoder.PngEncoderId;
-
             var Picker = new FileSavePicker();
             Picker.FileTypeChoices.Add("Image", new List<string>() { ".png" });
             StorageFile file = await Picker.PickSaveFileAsync();
-
-            using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.ReadWrite))
+            if(file != null)
             {
-                BitmapEncoder encoder = await BitmapEncoder.CreateAsync(BitmapEncoderGuid, stream);
-                Stream pixelStream = bm.PixelBuffer.AsStream();
-                byte[] pixels = new byte[pixelStream.Length];
-                await pixelStream.ReadAsync(pixels, 0, pixels.Length);
-                encoder.SetPixelData(BitmapPixelFormat.Bgra8, BitmapAlphaMode.Straight, (uint)bm.PixelWidth, (uint)bm.PixelHeight, 96, 96, pixels);
-                await encoder.FlushAsync();
+                using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.ReadWrite))
+                {
+                    BitmapEncoder encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, stream);
+                    Stream pixelStream = bm.PixelBuffer.AsStream();
+                    byte[] pixels = new byte[pixelStream.Length];
+                    await pixelStream.ReadAsync(pixels, 0, pixels.Length);
+                    encoder.SetPixelData(BitmapPixelFormat.Bgra8, BitmapAlphaMode.Straight, (uint)bm.PixelWidth, (uint)bm.PixelHeight, 96, 96, pixels);
+                    await encoder.FlushAsync();
+                }
             }
         }
 
@@ -222,93 +269,6 @@ namespace ImageCrypt
             WriteableBitmap bmp = new WriteableBitmap((int)properties.Width, (int)properties.Height);
             bmp.SetSource(await file.OpenAsync(FileAccessMode.Read));
             return bmp;
-        }
-
-        private async void dSave_Click(object sender, RoutedEventArgs e)
-        {
-            if(cbmp != null)
-            {
-                await WriteableBitmapToStorageFile(cbmp);
-            } else
-            {
-                ContentDialog d = new ContentDialog()
-                {
-                    Title = "Kein Bild geladen",
-                    Content = "Lade ein Bild mit 'Datei laden' um diese Aktion auszuführen",
-                    PrimaryButtonText = "Ok"
-                };
-                await d.ShowAsync();
-            }
-        }
-
-        private async void eSave_Click(object sender, RoutedEventArgs e)
-        {
-            string text = eText.Text;
-
-            if(text.Length == 0)
-            {
-                ContentDialog d = new ContentDialog()
-                {
-                    Title = "Kein Text eingegeben",
-                    Content = "Trage Text in das Textfeld ein, um diese Aktion auszuführen",
-                    PrimaryButtonText = "Ok"
-                };
-                await d.ShowAsync();
-            } else
-            {
-                var Picker = new FileSavePicker();
-                Picker.FileTypeChoices.Add("Text", new List<string>() { ".txt" });
-                StorageFile file = await Picker.PickSaveFileAsync();
-                if (file == null) { return; }
-                using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.ReadWrite))
-                {
-                    DataWriter dw = new DataWriter(stream);
-                    dw.WriteString(text);
-                    await dw.StoreAsync();
-                    await dw.FlushAsync();
-                    dw.DetachStream();
-                }
-            }
-        }
-
-        private async void dExecute_Click(object sender, RoutedEventArgs e)
-        {
-            if(cbmp != null)
-            {
-                ToText(cbmp);
-            } else
-            {
-                ContentDialog d = new ContentDialog()
-                {
-                    Title = "Kein Bild geladen",
-                    Content = "Lade ein Bild mit 'Datei laden' um diese Aktion auszuführen",
-                    PrimaryButtonText = "Ok"
-                };
-                await d.ShowAsync();
-            }
-        }
-
-        private async void eOpen_Click(object sender, RoutedEventArgs e)
-        {
-            var Picker = new FileOpenPicker();
-            Picker.FileTypeFilter.Add(".txt");
-            StorageFile file = await Picker.PickSingleFileAsync();
-            if (file == null) { return; }
-            using (IRandomAccessStream irastream = await file.OpenAsync(FileAccessMode.ReadWrite))
-            {
-                StreamReader reader = new StreamReader(irastream.AsStreamForRead());
-                string s = await reader.ReadToEndAsync();
-                eText.Text = s;
-            }
-        }
-
-        private async void dOpen_Click(object sender, RoutedEventArgs e)
-        {
-            cbmp = await StorageFileToWritableBitmap();
-            IRandomAccessStream stream = await Convert(cbmp);
-            BitmapImage bitmap = new BitmapImage();
-            bitmap.SetSource(stream);
-            dImage.Source = bitmap;
         }
     }
 }
