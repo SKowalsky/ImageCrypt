@@ -1,0 +1,1 @@
+C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\ImageCrypt.csproj;x86

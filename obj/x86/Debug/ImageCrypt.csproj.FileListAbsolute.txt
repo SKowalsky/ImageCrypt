@@ -122,6 +122,8 @@ C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Debug\System.Xml.Reade
 C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Debug\System.Xml.XDocument.dll
 C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Debug\System.Xml.XmlDocument.dll
 C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Debug\System.Xml.XmlSerializer.dll
+C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Debug\WriteableBitmapEx.WinRT.dll
+C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Debug\WriteableBitmapEx.WinRT.pdb
 C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\obj\x86\Debug\App.g.i.cs
 C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\obj\x86\Debug\App.g.cs
 C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\obj\x86\Debug\MainPage.g.i.cs
@@ -211,6 +213,3 @@ C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\obj\x86\Debug\qualifiers.txt
 C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\obj\x86\Debug\qualifiers.txt.intermediate
 C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\obj\x86\Debug\MultipleQualifiersPerDimensionFound.txt
 C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\obj\x86\Debug\ProjectArchitectures.txt
-C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Debug\WriteableBitmapEx.WinRT.dll
-C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Debug\WriteableBitmapEx.WinRT.pdb
-C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\obj\x86\Debug\ImageCrypt.csprojAssemblyReference.cache

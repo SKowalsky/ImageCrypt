@@ -20,7 +20,7 @@
                         <AppBarButton x:Name="eSave" Icon="Save" Label="{Binding Path=BtnSave}" Click="eSave_Click"/>
                         <AppBarButton x:Name="eOpen" Icon="OpenFile" Label="{Binding Path=BtnLoad}" Click="eOpen_Click"/>
                         <CommandBar.SecondaryCommands>
-                            <AppBarButton Icon="Setting" Label="{Binding Path=BtnSettings}"/>
+                            <AppBarButton Icon="Setting" Label="{Binding Path=BtnSettings}" Click="AppBarButton_Click_1"/>
                         </CommandBar.SecondaryCommands>
                     </CommandBar>
                     <TextBox x:Name="eText" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" Margin="0,0,0,70"/>
@@ -38,7 +38,7 @@
                         <AppBarButton x:Name="dSave" Icon="Save" Label="{Binding Path=BtnSave}" Click="dSave_Click"/>
                         <AppBarButton x:Name="dOpen" Icon="OpenFile" Label="{Binding Path=BtnLoad}" Click="dOpen_Click"/>
                         <CommandBar.SecondaryCommands>
-                            <AppBarButton Icon="Setting" Label="{Binding Path=BtnSettings}"/>
+                            <AppBarButton Icon="Setting" Label="{Binding Path=BtnSettings}" Click="AppBarButton_Click"/>
                         </CommandBar.SecondaryCommands>
                     </CommandBar>
                     <Image Name="dImage" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,70" RequestedTheme="Default"/>

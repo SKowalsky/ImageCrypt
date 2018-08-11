@@ -29,6 +29,7 @@ namespace ImageCrypt
     public sealed partial class MainPage : Page
     {
         private WriteableBitmap cbmp;
+        private LanguageManager manager;
 
         public MainPage()
         {
@@ -36,15 +37,35 @@ namespace ImageCrypt
             ApplicationView.PreferredLaunchViewSize = new Size(700, 500);
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
             ShutdownDialog();
-
-            this.DataContext = new LanguageManager();
-            SetLanguage();
+            manager = new LanguageManager();
+            GetLanguage();
         }
 
-        private void SetLanguage()
+        private void SetLanguage(Lang Language)
         {
-            LanguageManager.Language = Lang.English;
+            ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
+            StorageFolder localFolder = ApplicationData.Current.LocalFolder;
+            localSettings.Values["language"] = Language.ToString();
+        }
+
+        private void GetLanguage()
+        {
+            ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
+            StorageFolder localFolder = ApplicationData.Current.LocalFolder;
+            Object value = localSettings.Values["language"];
+            Lang lang;
+            if(value != null)
+            {
+                string s = (string)value;
+                lang = s.Equals("English") ? Lang.English : s.Equals("German") ? Lang.German : Lang.English;
+            } else
+            {
+                lang = Lang.English;
+            }
+            LanguageManager.Language = lang;
             LanguageManager.SetText();
+            this.DataContext = null;
+            this.DataContext = manager;
         }
 
         private void ShutdownDialog()
@@ -294,6 +315,27 @@ namespace ImageCrypt
             WriteableBitmap bmp = new WriteableBitmap((int)properties.Width, (int)properties.Height);
             bmp.SetSource(await file.OpenAsync(FileAccessMode.Read));
             return bmp;
+        }
+
+        public async void OpenSettings()
+        {
+            Lang lang = await LanguageManager.ShowSettingsDialog();
+            Debug.WriteLine(lang.ToString());
+            if(lang != Lang.Null)
+            {
+                SetLanguage(lang);
+                GetLanguage();
+            }
+        }
+
+        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenSettings();
+        }
+
+        private void AppBarButton_Click_1(object sender, RoutedEventArgs e)
+        {
+            OpenSettings();
         }
     }
 }

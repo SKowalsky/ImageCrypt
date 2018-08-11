@@ -183,6 +183,53 @@ namespace ImageCrypt
             return dialog;
         }
 
+        public async static Task<Lang> ShowSettingsDialog()
+        {
+            StackPanel sp = new StackPanel();
+            RadioButton rb1 = new RadioButton();
+            rb1.GroupName = "lang";
+            rb1.Content = (Language == Lang.English) ? "English" : (Language == Lang.German) ? "Englisch" : "";
+            rb1.Tag = "English";
+            RadioButton rb2 = new RadioButton();
+            rb2.GroupName = "lang";
+            rb2.Content = (Language == Lang.English) ? "German" : (Language == Lang.German) ? "Deutsch" : "";
+            rb2.Tag = "German";
+            sp.Children.Add(rb1);
+            sp.Children.Add(rb2);
+
+            if(Language == Lang.English)
+            {
+                rb1.IsChecked = true;
+            } else if(Language == Lang.German)
+            {
+                rb2.IsChecked = true;
+            }
+
+            ContentDialog dialog = new ContentDialog()
+            {
+                Title = (Language == Lang.English) ? "Settings" : (Language == Lang.German) ? "Einstellungen" : "",
+                Content = sp,
+                PrimaryButtonText = "Ok",
+                SecondaryButtonText = (Language == Lang.English) ? "Cancel" : (Language == Lang.German) ? "Abbrechen" : "",
+            };
+            if(await dialog.ShowAsync() != ContentDialogResult.Secondary)
+            {
+                if(rb1.IsChecked == true)
+                {
+                    return Lang.English;
+                } else if(rb2.IsChecked == true)
+                {
+                    return Lang.German;
+                } else
+                {
+                    return Lang.Null;
+                }
+            } else
+            {
+                return Lang.Null;
+            }
+        }
+
         public static void SetText()
         {
             PiText = (Language == Lang.English) ? "Text" : (Language == Lang.German) ? "Text" : "";
@@ -198,7 +245,7 @@ namespace ImageCrypt
 
     public enum Lang
     {
-        English, German
+        English, German, Null
     }
 
 }
