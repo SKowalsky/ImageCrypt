@@ -110,6 +110,79 @@ namespace ImageCrypt
             return dialog;
         }
 
+        public static ContentDialog GetKeyInputDialog(TextBox tb)
+        {
+            ContentDialog dialog = null;
+            if (Language == Lang.English)
+            {
+                dialog = new ContentDialog()
+                {
+                    Title = "Secret Key",
+                    Content = tb,
+                    PrimaryButtonText = "Ok",
+                    SecondaryButtonText = "Cancel",
+                };
+            } else if(Language == Lang.German)
+            {
+                dialog = new ContentDialog()
+                {
+                    Title = "Geheimer Schlüssel",
+                    Content = tb,
+                    PrimaryButtonText = "Ok",
+                    SecondaryButtonText = "Abbrechen",
+                };
+            }
+            return dialog;
+        }
+
+        public static ContentDialog KeyInvalidDialog()
+        {
+            ContentDialog dialog = null;
+            if (Language == Lang.English)
+            {
+                dialog = new ContentDialog()
+                {
+                    Title = "Error during decryption",
+                    Content = "Invalid key given",
+                    PrimaryButtonText = "Ok"
+                };
+            }
+            else if (Language == Lang.German)
+            {
+                dialog = new ContentDialog()
+                {
+                    Title = "Fehler bei der Entschlüsslung",
+                    Content = "Fahlscher Schlüssel gegeben",
+                    PrimaryButtonText = "Ok"
+                };
+            }
+            return dialog;
+        }
+
+        public static ContentDialog GetEncryptionErrorDialog()
+        {
+            ContentDialog dialog = null;
+            if (Language == Lang.English)
+            {
+                dialog = new ContentDialog()
+                {
+                    Title = "Error during encryption",
+                    Content = "An unknown error occured",
+                    PrimaryButtonText = "Ok"
+                };
+            }
+            else if (Language == Lang.German)
+            {
+                dialog = new ContentDialog()
+                {
+                    Title = "Fehler bei der Verschlüsslung",
+                    Content = "Ein unbekannter Fehler ist aufgetreten",
+                    PrimaryButtonText = "Ok"
+                };
+            }
+            return dialog;
+        }
+
         public static void SetText()
         {
             PiText = (Language == Lang.English) ? "Text" : (Language == Lang.German) ? "Text" : "";

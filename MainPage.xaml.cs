@@ -65,8 +65,19 @@ namespace ImageCrypt
             string text = eText.Text;
             if (text.Length > 0 && text.Length < Int32.MaxValue)
             {
-                //TODO: Prompt input dialog -> receive password -> encrypt text
-                ToImage(text);
+                TextBox tb = new TextBox();
+                if(await LanguageManager.GetKeyInputDialog(tb).ShowAsync() != ContentDialogResult.Secondary)
+                {
+                    string key = tb.Text;
+                    text = Crypto.Encrypt(text, key);
+                    if(text != null)
+                    {
+                        ToImage(text);
+                    } else
+                    {
+                        await LanguageManager.GetEncryptionErrorDialog().ShowAsync();
+                    }
+                }
             }
             else if (text.Length > Int32.MaxValue)
             {
@@ -217,7 +228,7 @@ namespace ImageCrypt
             return stream;
         }
 
-        public void ToText(WriteableBitmap bmp)
+        public async void ToText(WriteableBitmap bmp)
         {
             StringBuilder sb = new StringBuilder("");
             using (bmp.GetBitmapContext())
@@ -227,16 +238,30 @@ namespace ImageCrypt
                     for (int y = 0; y < bmp.PixelHeight; y++)
                     {
                         Color c = bmp.GetPixel(x, y);
-                        sb.Append((char)c.R);
-                        sb.Append((char)c.G);
-                        sb.Append((char)c.B);
+                        char r = (char)c.R;
+                        char g = (char)c.G;
+                        char b = (char)c.B;
+                        if (r != '\0') { sb.Append(r); }
+                        if (g != '\0') { sb.Append(g); }
+                        if (b != '\0') { sb.Append(b); }
                     }
                 }
             }
             string str = sb.ToString();
-            //TODO: Prompt input dialog -> receive password -> decrypt image
-            eText.Text = str;
-            mpivot.SelectedIndex = 0;
+            TextBox tb = new TextBox();
+            if (await LanguageManager.GetKeyInputDialog(tb).ShowAsync() != ContentDialogResult.Secondary)
+            {
+                string key = tb.Text;
+                str = Crypto.Decrypt(str, key);
+                if(str != null)
+                {
+                    eText.Text = str;
+                    mpivot.SelectedIndex = 0;
+                } else
+                {
+                    await LanguageManager.KeyInvalidDialog().ShowAsync();
+                }
+            }
         }
 
         public static async Task WriteableBitmapToStorageFile(WriteableBitmap bm)
