@@ -3,3 +3,7 @@
 ################################################################################
 
 /AppPackages
+/BundleArtifacts
+/bin
+/obj
+/ImageCrypt_StoreKey.pfx

@@ -36,7 +36,6 @@ namespace ImageCrypt
             this.InitializeComponent();
             ApplicationView.PreferredLaunchViewSize = new Size(700, 500);
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
-            ShutdownDialog();
             manager = new LanguageManager();
             GetLanguage();
         }
@@ -66,19 +65,6 @@ namespace ImageCrypt
             LanguageManager.SetText();
             this.DataContext = null;
             this.DataContext = manager;
-        }
-
-        private void ShutdownDialog()
-        {
-            Windows.UI.Core.Preview.SystemNavigationManagerPreview.GetForCurrentView().CloseRequested +=
-            async (sender, args) =>
-            {
-                args.Handled = true;
-                if (await LanguageManager.GetExitDialog().ShowAsync() != ContentDialogResult.Secondary)
-                {
-                    Application.Current.Exit();
-                }
-            };
         }
 
         private async void eExecute_Click(object sender, RoutedEventArgs e)
@@ -175,10 +161,14 @@ namespace ImageCrypt
 
         private async void dOpen_Click(object sender, RoutedEventArgs e)
         {
-            cbmp = await StorageFileToWritableBitmap();
-            BitmapImage bitmap = new BitmapImage();
-            bitmap.SetSource(await Convert(cbmp));
-            dImage.Source = bitmap;
+            WriteableBitmap nbmp = await StorageFileToWritableBitmap();
+            if(nbmp != null)
+            {
+                cbmp = nbmp;
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.SetSource(await Convert(cbmp));
+                dImage.Source = bitmap;
+            }
         }
 
         public async void ToImage(string text)

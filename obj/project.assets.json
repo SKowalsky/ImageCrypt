@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "UAP,Version=v10.0.15063": {
+    "UAP,Version=v10.0.14393": {
       "Microsoft.CSharp/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -2216,7 +2216,7 @@
         }
       }
     },
-    "UAP,Version=v10.0.15063/win10-arm": {
+    "UAP,Version=v10.0.14393/win10-arm": {
       "Microsoft.CSharp/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -4521,7 +4521,7 @@
         }
       }
     },
-    "UAP,Version=v10.0.15063/win10-arm-aot": {
+    "UAP,Version=v10.0.14393/win10-arm-aot": {
       "Microsoft.CSharp/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -6862,7 +6862,7 @@
         }
       }
     },
-    "UAP,Version=v10.0.15063/win10-arm64-aot": {
+    "UAP,Version=v10.0.14393/win10-arm64-aot": {
       "Microsoft.CSharp/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -8789,7 +8789,7 @@
         }
       }
     },
-    "UAP,Version=v10.0.15063/win10-x64": {
+    "UAP,Version=v10.0.14393/win10-x64": {
       "Microsoft.CSharp/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -11103,7 +11103,7 @@
         }
       }
     },
-    "UAP,Version=v10.0.15063/win10-x64-aot": {
+    "UAP,Version=v10.0.14393/win10-x64-aot": {
       "Microsoft.CSharp/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -13453,7 +13453,7 @@
         }
       }
     },
-    "UAP,Version=v10.0.15063/win10-x86": {
+    "UAP,Version=v10.0.14393/win10-x86": {
       "Microsoft.CSharp/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -15767,7 +15767,7 @@
         }
       }
     },
-    "UAP,Version=v10.0.15063/win10-x86-aot": {
+    "UAP,Version=v10.0.14393/win10-x86-aot": {
       "Microsoft.CSharp/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -27587,7 +27587,7 @@
     }
   },
   "projectFileDependencyGroups": {
-    "UAP,Version=v10.0.15063": [
+    "UAP,Version=v10.0.14393": [
       "Microsoft.NETCore.UniversalWindowsPlatform >= 6.0.8",
       "WriteableBitmapEx >= 1.5.1"
     ]
@@ -27614,20 +27614,20 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "uap10.0.15063"
+        "uap10.0.14393"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "uap10.0.15063": {
+        "uap10.0.14393": {
           "projectReferences": {}
         }
       }
     },
     "frameworks": {
-      "uap10.0.15063": {
+      "uap10.0.14393": {
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": {
             "target": "Package",

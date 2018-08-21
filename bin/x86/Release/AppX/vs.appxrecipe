@@ -8,8 +8,8 @@
     <TargetOsDescription>Windows 10.0</TargetOsDescription>
     <SolutionConfiguration>Release|x86</SolutionConfiguration>
     <PackageArchitecture>x86</PackageArchitecture>
-    <PackageIdentityName>1f871366-def5-447d-858f-7e04318201e2</PackageIdentityName>
-    <PackageIdentityPublisher>CN=skowa</PackageIdentityPublisher>
+    <PackageIdentityName>93d9fa4c-dc80-4f90-ab5a-b45287cb778f</PackageIdentityName>
+    <PackageIdentityPublisher>CN=5190547F-A095-4CBC-9B25-642D5DF45419</PackageIdentityPublisher>
     <IntermediateOutputPath>C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\obj\x86\Release\</IntermediateOutputPath>
     <RemoteDeploymentType>
     </RemoteDeploymentType>
@@ -19,59 +19,258 @@
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
     <LayoutDir>C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\AppX</LayoutDir>
-    <RegisteredManifestChecksum>99ACF7DEB86C756474C71FE8DC9EAB3968617AC9B64D6C8FA9CB483D9275AA9E</RegisteredManifestChecksum>
-    <RegisteredPackageMoniker>1f871366-def5-447d-858f-7e04318201e2_1.0.0.0_x86__zk14s58nyx7z4</RegisteredPackageMoniker>
-    <RegisteredUserModeAppID>1f871366-def5-447d-858f-7e04318201e2_zk14s58nyx7z4!App</RegisteredUserModeAppID>
-    <RegisteredPackageID>1f871366-def5-447d-858f-7e04318201e2</RegisteredPackageID>
-    <RegisteredPackagePublisher>CN=skowa</RegisteredPackagePublisher>
-    <RegisteredVersion>1.0.0.0</RegisteredVersion>
+    <RegisteredManifestChecksum>20C00CFBEF5385AEAC103FD75CBBC0C516E60BC08E1C35A6D33218AEE4A46F48</RegisteredManifestChecksum>
+    <RegisteredPackageMoniker>64624SamuelKowalsky.TextToImage_1.1.3.0_x86__553rc4fcfnpve</RegisteredPackageMoniker>
+    <RegisteredUserModeAppID>64624SamuelKowalsky.TextToImage_553rc4fcfnpve!App</RegisteredUserModeAppID>
+    <RegisteredPackageID>64624SamuelKowalsky.TextToImage</RegisteredPackageID>
+    <RegisteredPackagePublisher>CN=5190547F-A095-4CBC-9B25-642D5DF45419</RegisteredPackagePublisher>
+    <RegisteredVersion>1.1.3.0</RegisteredVersion>
     <JitOptimizationSuppressed>True</JitOptimizationSuppressed>
   </PropertyGroup>
   <ItemGroup>
     <AppXManifest Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-08-11T10:13:59.049</Modified>
+      <Modified>2018-08-14T18:06:30.564</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2018-08-11T10:13:43.719</Modified>
+      <Modified>2018-08-14T18:06:13.728</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\icon.png">
+      <PackagePath>Assets\icon.png</PackagePath>
+      <Modified>2018-08-11T11:46:42.027</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\LargeTile.scale-100.png">
+      <PackagePath>Assets\LargeTile.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-08-11T11:47:27.049</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\LargeTile.scale-125.png">
+      <PackagePath>Assets\LargeTile.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-08-11T11:47:27.086</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\LargeTile.scale-150.png">
+      <PackagePath>Assets\LargeTile.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-08-11T11:47:27.119</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\LargeTile.scale-200.png">
+      <PackagePath>Assets\LargeTile.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-08-11T11:47:27.174</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\LargeTile.scale-400.png">
+      <PackagePath>Assets\LargeTile.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-08-11T11:47:27.371</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
       <Modified>2018-04-15T20:49:47.806</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\SmallTile.scale-100.png">
+      <PackagePath>Assets\SmallTile.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-08-11T11:47:26.699</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\SmallTile.scale-125.png">
+      <PackagePath>Assets\SmallTile.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-08-11T11:47:26.709</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\SmallTile.scale-150.png">
+      <PackagePath>Assets\SmallTile.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-08-11T11:47:26.718</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\SmallTile.scale-200.png">
+      <PackagePath>Assets\SmallTile.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-08-11T11:47:26.732</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\SmallTile.scale-400.png">
+      <PackagePath>Assets\SmallTile.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-08-11T11:47:26.752</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\SplashScreen.scale-100.png">
+      <PackagePath>Assets\SplashScreen.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-08-11T11:47:27.543</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\SplashScreen.scale-125.png">
+      <PackagePath>Assets\SplashScreen.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-08-11T11:47:27.582</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\SplashScreen.scale-150.png">
+      <PackagePath>Assets\SplashScreen.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-08-11T11:47:27.637</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-04-15T20:49:47.806</Modified>
+      <Modified>2018-08-11T11:47:27.736</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\SplashScreen.scale-400.png">
+      <PackagePath>Assets\SplashScreen.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-08-11T11:47:28.089</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\Square150x150Logo.scale-100.png">
+      <PackagePath>Assets\Square150x150Logo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-08-11T11:47:26.765</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\Square150x150Logo.scale-125.png">
+      <PackagePath>Assets\Square150x150Logo.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-08-11T11:47:26.777</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\Square150x150Logo.scale-150.png">
+      <PackagePath>Assets\Square150x150Logo.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-08-11T11:47:26.791</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\Square150x150Logo.scale-200.png">
       <PackagePath>Assets\Square150x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-04-15T20:49:47.806</Modified>
+      <Modified>2018-08-11T11:47:26.813</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\Square150x150Logo.scale-400.png">
+      <PackagePath>Assets\Square150x150Logo.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-08-11T11:47:26.868</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\Square44x44Logo.altform-unplated_targetsize-16.png">
+      <PackagePath>Assets\Square44x44Logo.altform-unplated_targetsize-16.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-08-11T11:47:27.470</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\Square44x44Logo.altform-unplated_targetsize-256.png">
+      <PackagePath>Assets\Square44x44Logo.altform-unplated_targetsize-256.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-08-11T11:47:27.516</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\Square44x44Logo.altform-unplated_targetsize-32.png">
+      <PackagePath>Assets\Square44x44Logo.altform-unplated_targetsize-32.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-08-11T11:47:27.483</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\Square44x44Logo.altform-unplated_targetsize-48.png">
+      <PackagePath>Assets\Square44x44Logo.altform-unplated_targetsize-48.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-08-11T11:47:27.490</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\Square44x44Logo.scale-100.png">
+      <PackagePath>Assets\Square44x44Logo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-08-11T11:47:27.378</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\Square44x44Logo.scale-125.png">
+      <PackagePath>Assets\Square44x44Logo.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-08-11T11:47:27.385</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\Square44x44Logo.scale-150.png">
+      <PackagePath>Assets\Square44x44Logo.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-08-11T11:47:27.392</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\Square44x44Logo.scale-200.png">
       <PackagePath>Assets\Square44x44Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-04-15T20:49:47.806</Modified>
+      <Modified>2018-08-11T11:47:27.401</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\Square44x44Logo.scale-400.png">
+      <PackagePath>Assets\Square44x44Logo.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-08-11T11:47:27.414</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\Square44x44Logo.targetsize-16.png">
+      <PackagePath>Assets\Square44x44Logo.targetsize-16.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-08-11T11:47:27.420</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\Square44x44Logo.targetsize-24.png">
+      <PackagePath>Assets\Square44x44Logo.targetsize-24.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-08-11T11:47:27.426</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-04-15T20:49:47.806</Modified>
+      <Modified>2018-08-11T11:47:27.477</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\StoreLogo.png">
-      <PackagePath>Assets\StoreLogo.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\Square44x44Logo.targetsize-256.png">
+      <PackagePath>Assets\Square44x44Logo.targetsize-256.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-04-15T20:49:47.806</Modified>
+      <Modified>2018-08-11T11:47:27.460</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\Square44x44Logo.targetsize-32.png">
+      <PackagePath>Assets\Square44x44Logo.targetsize-32.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-08-11T11:47:27.434</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\Square44x44Logo.targetsize-48.png">
+      <PackagePath>Assets\Square44x44Logo.targetsize-48.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-08-11T11:47:27.440</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\StoreLogo.scale-100.png">
+      <PackagePath>Assets\StoreLogo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-08-11T11:47:28.096</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\StoreLogo.scale-125.png">
+      <PackagePath>Assets\StoreLogo.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-08-11T11:47:28.104</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\StoreLogo.scale-150.png">
+      <PackagePath>Assets\StoreLogo.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-08-11T11:47:28.111</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\StoreLogo.scale-200.png">
+      <PackagePath>Assets\StoreLogo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-08-11T11:47:28.121</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\StoreLogo.scale-400.png">
+      <PackagePath>Assets\StoreLogo.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-08-11T11:47:28.139</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\Wide310x150Logo.scale-100.png">
+      <PackagePath>Assets\Wide310x150Logo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-08-11T11:47:26.880</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\Wide310x150Logo.scale-125.png">
+      <PackagePath>Assets\Wide310x150Logo.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-08-11T11:47:26.895</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\Wide310x150Logo.scale-150.png">
+      <PackagePath>Assets\Wide310x150Logo.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-08-11T11:47:26.913</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-04-15T20:49:47.806</Modified>
+      <Modified>2018-08-11T11:47:26.941</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\Assets\Wide310x150Logo.scale-400.png">
+      <PackagePath>Assets\Wide310x150Logo.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-08-11T11:47:27.030</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\clrcompression.dll">
       <PackagePath>clrcompression.dll</PackagePath>
@@ -79,24 +278,24 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\ImageCrypt.dll">
       <PackagePath>ImageCrypt.dll</PackagePath>
-      <Modified>2018-08-11T10:13:58.888</Modified>
+      <Modified>2018-08-14T18:06:30.404</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\ImageCrypt.exe">
       <PackagePath>ImageCrypt.exe</PackagePath>
-      <Modified>2018-08-11T10:13:59.041</Modified>
+      <Modified>2018-08-14T18:06:30.557</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\ImageCrypt.pdb">
       <PackagePath>ImageCrypt.pdb</PackagePath>
-      <Modified>2018-08-11T10:13:59.033</Modified>
+      <Modified>2018-08-14T18:06:30.548</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2018-08-11T10:13:43.719</Modified>
+      <Modified>2018-08-14T18:06:13.729</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\skowa\source\repos\ImageCrypt\ImageCrypt\bin\x86\Release\ilc\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-08-11T10:04:21.893</Modified>
+      <Modified>2018-08-14T18:06:14.069</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
